@@ -1,0 +1,52 @@
+using System;
+using System.Text;
+class Program
+{
+    static void Main()
+    {
+        string sentence = Console.ReadLine();
+        int lineWidth = int.Parse(Console.ReadLine());
+        string bombedLines = Console.ReadLine();
+        string[] bombedLine = bombedLines.Split(' ');
+        int rows = sentence.Length / lineWidth;
+        if (sentence.Length % lineWidth != 0) rows++;
+        string endSpaces = new string('*', rows * lineWidth - sentence.Length);
+        byte[] once = new byte[bombedLine.Length];
+        string fullsentence = sentence + endSpaces;
+
+        for (int h = 0; h < bombedLine.Length; h++)
+        {
+            int aide = 0;
+            for (int m = 0; m < rows; m++)
+            {   
+                    if (fullsentence[(lineWidth * m) + Convert.ToInt32(bombedLine[h])] == ' ') once[h] = 1;
+                    else once[h] = 2;
+                    if (m >= 1)
+                    {
+                        if (fullsentence[(lineWidth * m) + Convert.ToInt32(bombedLine[h])] == ' ' &&
+                            aide > 0)
+                        {
+                            m = rows;
+                            once[h] = 3;
+                        }
+                    }
+                    if (once[h] == 2)
+                    {
+                        StringBuilder sb = new StringBuilder(fullsentence);
+                        sb[(lineWidth * m) + Convert.ToInt32(bombedLine[h])] = ' ';
+                        fullsentence = sb.ToString();
+                        aide++;
+                    } 
+            }
+        }
+        for (int i = 1; i <= rows; i++)
+        {
+
+            for (int j = (lineWidth * (i - 1)); j < (lineWidth * i); j++)
+            {            
+                if (sentence.Length > j) Console.Write(fullsentence[j]);  
+            }
+        }
+        Console.WriteLine();
+    }
+}
