@@ -1,0 +1,41 @@
+using System;
+using System.Numerics;
+    class Program
+    {
+
+        static void Main()
+        {
+            int n = int.Parse(Console.ReadLine());
+            int zvBr = 1;
+            int m=0;
+            
+           
+            
+            string endDots = new string('.',n);
+            for (int i = 1; i <=n; i++)
+            {
+                m = n - zvBr;
+                string iniDots = new string('.', m);
+                string zvezdi = new string('*', zvBr);
+                Console.Write(iniDots);
+                Console.Write(zvezdi);
+                Console.WriteLine(endDots);
+                if (i < ((n - 1) / 2) + 1) zvBr += 2;
+                 if (i >= ((n - 1) / 2)+1) zvBr -= 2;
+            }
+            int b = 2 * n;
+            int x=0;
+            int y=0;
+            for(int j=0;j<((n-1)/2);j++)
+            {
+                string biniDots = new string('.', x);
+                string bzvezdi = new string('*', b);
+                string bendDots = new string('.', y);
+                Console.WriteLine(biniDots+bzvezdi+bendDots);
+                b=b-2;
+                x++;
+                y++;
+            }
+
+        }
+    }
