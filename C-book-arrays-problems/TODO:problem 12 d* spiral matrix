@@ -1,0 +1,68 @@
+using System;
+class Program
+{
+    static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+        int[,] arr = new int[n,n];
+        int count = 0;
+        int filler = 1;
+        for (int i = 0; i < n/2+1; i++)
+        {
+            for (int j = 0; j < n - count; j++)
+            {
+                if (arr[i, j] == 0)
+                {
+                    arr[i, j] = filler;
+                    filler++;
+                }
+                
+            }
+            count++;
+            int down = i;
+            for (int j = 0; j < n - count; j++)
+            {
+                if (arr[down +1, n - count]==0)
+                {
+                    arr[down +1, n - count] = filler;
+                    filler++;
+                    down++;
+                }
+                
+            }
+            int left=n-count;
+            for (int j = 0; j < n - count; j++)
+            {
+                if (arr[n - count, left]==0)
+                {
+                    arr[n - count, left] = filler;
+                    filler++;
+                    left--; 
+                }
+                
+            }
+            //count++;
+            int up = n - count;
+            for (int j = 0; j < n - count; j++)
+            {
+                if (arr[up, i] == 0)
+                {
+                    arr[up, i] = filler;
+                    filler++;
+                    up--; 
+                }
+                
+            }
+        }
+
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                Console.Write("{0} ",arr[i, j]);
+            }
+            Console.WriteLine();
+        }
+        
+    }
+}
