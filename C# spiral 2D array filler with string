@@ -1,0 +1,89 @@
+using System;
+class Program
+{
+    static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+        char[,] arr = new char[n, n];
+        int count = 0;
+        int row = 0;
+        int filler = 0;
+        string text = Console.ReadLine();
+
+        for (int i = 0; i < n / 2 + 1; i++)
+        {
+            for (int j = 0; j < n - row; j++)
+            {
+                if (arr[i, j] == 0)
+                {
+                    if (filler==text.Length)
+                    {
+                        filler = 0;   
+                    }
+                    arr[i, j] = text[filler];
+                    filler++;
+                }
+            }
+            count++;
+            row++;
+            int down = i;
+            for (int j = 0; j < n - count; j++)
+            {
+                if (arr[down + 1, n - row] == 0)
+                {
+                    if (filler == text.Length)
+                    {
+                        filler = 0;
+                    }
+                    arr[down + 1, n - row] = text[filler];
+                    filler++;
+                    down++;
+                }
+            }
+            int left = n - row;
+            for (int j = 0; j < n - count; j++)
+            {
+                if (arr[n - row, left - 1] == 0)
+                {
+                    if (filler == text.Length)
+                    {
+                        filler = 0;
+                    }
+                    arr[n - row, left - 1] = text[filler];
+                    filler++;
+                    left--;
+                }
+            }
+            count++;
+            int up = n - row;
+            for (int j = 0; j < n - count; j++)
+            {
+                if (arr[up - 1, i] == 0)
+                {
+                    if (filler == text.Length)
+                    {
+                        filler = 0;
+                    }
+                    arr[up - 1, i] = text[filler];
+                    filler++;
+                    up--;
+                }
+            }
+        }
+
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (arr[i, j] < 10)
+                {
+                    Console.Write("{0}  ", arr[i, j]);
+                }
+                else Console.Write("{0} ", arr[i, j]);
+
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+        }
+    }
+}
