@@ -1,0 +1,57 @@
+using System;
+class Program
+{
+    static void Main()
+    {
+        int startYear = int.Parse(Console.ReadLine());
+        int endYear = int.Parse(Console.ReadLine());
+        int magicWeight = int.Parse(Console.ReadLine());
+        int currentMonth=0;
+        int daysInMonth=31;
+        int count = 0;
+        for (int i = startYear; i<=endYear ; i++)
+        {
+            for (int j = 1; j <= 12; j++)
+            {
+                currentMonth++;
+                if (currentMonth == 1 || currentMonth == 3 || currentMonth == 5 || currentMonth == 7
+                    || currentMonth == 8 || currentMonth == 10 || currentMonth == 12)
+                {
+                    daysInMonth = 31;
+                }
+                else if (currentMonth == 4 || currentMonth == 6 || currentMonth == 9 || currentMonth == 11)
+                {
+                    daysInMonth = 30;
+                }
+                else if (currentMonth == 2 && i != 1992 && i != 1996 && i != 2000 && i != 2004 && i != 2008 && i != 2012 && i != 2016)
+                {
+                    daysInMonth = 28;
+                }
+                else daysInMonth = 29;
+                for (int k = 1; k <= daysInMonth; k++)
+                {
+                    int sum = (((k / 10) % 10) *(k % 10)) + ((k / 10 % 10) * (j / 10 % 10)) + ((k / 10 % 10) * (j % 10)) + 
+                        ((k / 10 % 10) * (i / 1000 % 10)) + ((k / 10 % 10 )* (i / 100 % 10)) + ((k / 10 % 10) * (i / 10 % 10)) + 
+                        ((k / 10 % 10) * (i % 10)) + ((k % 10 )* (j / 10 % 10)) +((k / 10 % 10) * (j % 10)) + 
+                        ((k / 10 % 10) * (i / 1000 % 10)) + ((k / 10 % 10) * (i / 100 % 10)) + ((k / 10 % 10) * (i / 10 % 10)) +
+                        ((k / 10 % 10) * (i % 10)) + ((j / 10 % 10) * (j % 10)) + ((j / 10 % 10) * (i / 1000 % 10)) +
+                        ((j / 10 % 10) * (i / 100 % 10)) + ((j / 10 % 10) * (i / 10 % 10)) +
+                        ((j / 10 % 10) * (i % 10)) + ((j % 10) * (i / 1000 % 10)) + ((j % 10 * i / 100 % 10)) + 
+                        ((j % 10) *( i / 10 % 10)) + ((j % 10) * (i % 10)) + ((i / 1000 % 10 )*( i / 100 % 10)) + 
+                        ((i / 1000 % 10) * (i / 10 % 10)) + ((i / 1000 % 10) * (i % 10)) + ((i / 100 % 10) *( i / 10 % 10)) + 
+                        ((i / 100 % 10) * (i % 10)) + ((i / 10 % 10) * (i % 10));
+                    if (sum==magicWeight)
+                    {
+                        Console.WriteLine("{0}-{1}-{2}",k,j,i);
+                        count++;
+                    }
+                }
+            
+            }
+        }
+        if (count==0)
+        {
+            Console.WriteLine("No");
+        }
+    }
+}
