@@ -1,0 +1,76 @@
+using System;
+class Student
+{
+    private string firstName;
+    private string secondName;
+    private string lastName;
+    private string course;
+    private string email;
+    private int phoneNumber;
+    private int studentsNumber;
+
+    public Student(int number)
+    {
+        studentsNumber += number;
+    }
+    public Student()
+    {
+        this.firstName = "Unnamed";
+        this.secondName = "Unnamed";
+        this.lastName = "Unnamed";
+        this.course = "NoInformation";
+        this.email = "email was not set";
+        this.phoneNumber = 0;
+        studentsNumber++;
+    }
+    public Student(string email, int phoneNumber)
+    {
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        studentsNumber++;
+    }
+    public Student(string first, string second, string last, string course)
+    {
+        this.firstName = first;
+        this.secondName = second;
+        this.lastName = last;
+        this.course = course;
+        studentsNumber++;
+    }
+    public void SetEmail(string email)
+    {
+        this.email = email;
+    }
+    public void PrintStudentInformation()
+    {
+        Console.WriteLine("Student's First name:" + this.firstName);
+        Console.WriteLine("Student's Second name:" + this.secondName);
+        Console.WriteLine("Student's Last name:" + this.lastName);
+        Console.WriteLine("Student's Course type name:" + this.course);
+        Console.WriteLine("Student's Email:" + this.email);
+        Console.WriteLine("Student's Phone number:" + this.phoneNumber);
+    }
+
+    public void PrintNumberOfStudent()
+    {
+        Console.WriteLine("Number of student in the university: ",studentsNumber);
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        Student purvokursnik = new Student("Gosho", "Ivanov", "Manolov", "Softueren Injener");
+        Student purvokursnikDve = new Student();
+        Student tretokursnik = new Student("goshopicha@abv.bg", 0975351244);
+        purvokursnik.SetEmail("GoshoPichagata@gmail.com");
+        purvokursnik.PrintStudentInformation();
+        Console.WriteLine();
+        purvokursnikDve.PrintStudentInformation();
+        Console.WriteLine();
+        tretokursnik.PrintStudentInformation();
+        Console.WriteLine();
+        Student broiStudenti = new Student(0);
+        broiStudenti.PrintNumberOfStudent();
+    }
+}
