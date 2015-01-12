@@ -1,0 +1,73 @@
+using System;
+class Program
+{
+    static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+        int f = int.Parse(Console.ReadLine());
+        int r = int.Parse(Console.ReadLine());
+        if (r>=18)
+        {
+            r = r % 18;
+        }
+        //int mask = 1<<f;
+        int frozenBit = n>>f & 1;
+        frozenBit += 48;
+        string binaryNum = Convert.ToString(n, 2);
+        binaryNum=binaryNum.PadLeft(19, '0');
+        Console.WriteLine(binaryNum);
+        char[] num = new char[18];
+        int count = 0;
+        for (int i = 0; i <19; i++)
+        {
+            if (i!=18-f)
+            {
+                num[count] = binaryNum[i];
+                count++;
+            }
+        }
+        count=0;
+        char[] bitsToLeft = new char[r];
+        for (int i = 18-r; i < 18; i++)
+        {
+            bitsToLeft[count] = num[i];
+            count++;
+        }
+        for (int i = 17; i >= 17-r; i--)
+        {
+            num[i] = num[i - r - 1];
+        }
+        for (int i = 0; i < r; i++)
+        {
+            num[i] = bitsToLeft[i];
+        }
+        for (int i = 0; i < 18; i++)
+			{
+                Console.Write(num[i]);
+			}
+        char[] finalNumber = new char[19];
+        count = 0;
+        for (int i = 0; i < 19; i++)
+        {
+            if (i!=18-f-1)
+            {
+                finalNumber[i] = num[count];
+                count++;
+            }
+            else
+            {
+                finalNumber[i] = Convert.ToChar(frozenBit);
+            }
+        }
+        Console.WriteLine();
+        for (int i = 0; i < 19; i++)
+        {
+            Console.Write(finalNumber[i]);
+        }
+    }
+}
+//       •	2521(10) = 0000000100111011001  1000000010101101100 (roll right with frozen position 8)
+//       •	1000000010101101100  0100000001100110110 (roll right with frozen position 8)
+//       •	0100000001100110110  0010000000110011011 (roll right with frozen position 8)
+//       •	0010000000110011011  1001000000101001101 = 295245(10) (roll right with frozen position 8)
+            
