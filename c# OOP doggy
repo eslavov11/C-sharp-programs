@@ -1,0 +1,74 @@
+using System;
+public class Doggy
+{
+    private string name;
+    private string color;
+    private string poroda;
+    private int age;
+    private bool maleGender;
+
+    public Doggy()
+    {
+        name = "Unnamed";
+        color = "Gray";
+        poroda = "Undefined";
+        age = 0;
+
+    }
+
+    public Doggy(string name, string color, string poroda, int age, bool maleGender)
+    {
+        this.name = name;
+        this.color = color;
+        this.poroda = poroda;
+        this.age = age;
+        this.maleGender = maleGender;
+    }
+
+    public void PrintInformation()
+    {
+        Console.Write("The dog's name is {0}. ", name);
+        Console.Write("His color is {0}. ", color);
+        Console.Write("His \"poroda\" is {0}. ", poroda);
+        Console.Write("The dog's is {0} year(s) old. ", age);
+        if (maleGender==false)
+        {
+            Console.WriteLine("{0}'s gender is female.", name);
+        }
+        else
+        {
+            Console.WriteLine("{0}'s gender is male.", name);
+        }
+    }
+}
+
+class Progam
+{
+    public static void Main()
+    {
+        Console.Write("What's the dog's name: ");
+        string name = Console.ReadLine();
+        Console.Write("What's the dog's color: ");
+        string color = Console.ReadLine();
+        Console.Write("What's the dog's poroda: ");
+        string poroda = Console.ReadLine();
+        Console.Write("What's the dog's age: ");
+        int age = int.Parse(Console.ReadLine());
+        Console.Write("Vuvedete pol na kucheto(M/F): ");
+        string pol = Console.ReadLine();
+        bool maleGender=false;
+        if (pol=="M")
+        {
+            maleGender = true;
+        }
+        else if(pol=="F")
+        {
+            maleGender = false;
+        }
+        Doggy pes1 = new Doggy();
+        Doggy pes2 = new Doggy(name, color, poroda, age, maleGender);
+        pes1.PrintInformation();
+        Console.WriteLine();
+        pes2.PrintInformation();
+    }
+}
