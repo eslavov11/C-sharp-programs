@@ -1,0 +1,29 @@
+using System;
+using System.IO;
+using System.Numerics;
+using System.Collections.Generic;
+class Program
+{
+   static void Main()
+    {
+        List<int> arr = new List<int>();
+        bool end=false;
+        do
+        {
+            char num = Convert.ToChar(Console.ReadLine());
+            if (num == ' ')
+            {
+                end = true;
+            }
+            arr.Add(Convert.ToInt32(num)-48);
+            
+
+        } while (end==false);
+
+        for (int i = 0; i < arr.Count-1; i++)
+        {
+            Console.WriteLine(arr[i]);
+        }
+    }
+    
+}
