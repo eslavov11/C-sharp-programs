@@ -1,0 +1,123 @@
+using System;
+public class GSM
+{
+    private string model;
+    private string manufacturer;
+    private int price;
+    private string owner;
+    private static string nokia95 = "95, Nokia, 50, Nakov";
+
+    public GSM()
+    {
+        this.model = "Undefined";
+        this.manufacturer = "Undefined";
+        this.price = 0;
+        this.owner = "Empty";
+    }
+    public GSM(string model, string manufacturer, int price, string owner)
+    {
+        this.model = model;
+        this.manufacturer = manufacturer;
+        this.price = price;
+        this.owner = owner;
+    }
+
+    public string Model
+    {
+        get { return this.model; }
+        set { this.model = value; }
+    }
+
+    public int Price
+    {
+        get { return this.price; }
+        set { this.price = value; }
+    }
+    public string PrintGSMInfo()
+    {
+        string info;
+        info = this.model + " " + this.manufacturer + " " + this.price + " " + this.owner;
+        return info;
+    }
+    public static void PrintNokia95()
+    {
+        Console.WriteLine(nokia95);
+    }
+}
+public class Battery
+{
+    public enum Type
+    {
+        LiIon , NiMH, NiCd
+    }
+    private string model;
+    private int idleTime;
+    private int talkHours;
+
+    public Battery()
+    {
+        this.model = "Undefined";
+        this.idleTime = 0;
+        this.talkHours = 0;
+    }
+
+    public Battery(string model, int idle, int talk)
+    {
+        this.model = model;
+        this.idleTime = idle;
+        this.talkHours = talk;
+    }
+
+    public string Model
+    {
+    get {return this.model;}
+    set { this.model = value; }
+    }
+
+    public int IdleTime
+    {
+        get {return this.idleTime;}
+        set {this.idleTime = value;}
+    }
+}
+public class Display
+{
+    private int size;
+    private int colors;
+
+    public Display()
+    {
+        this.size = 0;
+        this.colors = 0;
+    }
+    public Display(int size, int colors)
+    {
+        this.size = size;
+        this.colors = colors;
+    }
+
+    public int Size
+    {
+        get { return this.size;}
+        set { this.size = value; }
+    }
+
+    public int Colors
+    {
+        get { return this.colors;}
+        set { this.colors = value; }
+    }
+}
+class Program
+{
+    
+    static void Main()
+    {
+        GSM galaxyS3 = new GSM("S3", "Samsung", 300, "Pesho");
+        GSM nokiataBrat = new GSM();
+        Console.WriteLine(galaxyS3.PrintGSMInfo()); 
+        Console.WriteLine(nokiataBrat.PrintGSMInfo());
+        GSM.PrintNokia95();
+    }
+}
+
