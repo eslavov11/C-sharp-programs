@@ -1,0 +1,22 @@
+using System;
+using System.IO;
+using System.Numerics;
+class Program
+{
+    static void Main()
+    {
+        StreamReader file1 = new StreamReader("D:\\Edi\\c\\1.txt");
+        StreamReader file2 = new StreamReader("D:\\Edi\\c\\2.txt");
+        StreamWriter file3 = new StreamWriter("D:\\Edi\\c\\3.txt");
+        using (file1)
+        {
+            using (file2)
+            {
+                using (file3)
+                {
+                    file3.WriteLine(file1.ReadLine() + " " + file2.ReadLine());
+                }
+            }
+        }
+    }
+}
