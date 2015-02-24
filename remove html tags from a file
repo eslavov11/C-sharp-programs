@@ -1,0 +1,46 @@
+using System;
+using System.Text;
+using System.IO;
+    class Program
+    {
+        static void Main()
+        {
+            StreamReader reader = new StreamReader("D:\\nakov\\text.txt");
+            StreamWriter writer = new StreamWriter("D:\\nakov\\new.txt");
+            using (reader)
+            {
+                using (writer)
+                {
+                    string line = reader.ReadLine();
+                    string newLine = "";
+                    while (line != null)
+                    {
+                        line = reader.ReadLine();
+                        Console.WriteLine(line);
+                        for (int i = 0; i < line.Length; i++)
+                        {
+                            if (line[i]=='<')
+                            {
+                                int end = i+1;
+                                while (line[end]!='>')
+                                {
+                                    end++;
+                                }
+                                for (int j = 0; j < line.Length; j++)
+                                {
+                                    if (j>i && j<end)
+                                    {
+                                        continue; 
+                                    }
+                                    newLine += line[j];
+                                }
+                            }
+                            Console.WriteLine(newLine);
+                            return;
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
