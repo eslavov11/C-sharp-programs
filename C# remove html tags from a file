@@ -1,0 +1,21 @@
+using System;
+using System.Text;
+using System.IO;
+using System.Text.RegularExpressions;
+class Program
+{
+    static void Main()
+    {
+        using (var reader = new StreamReader("D:\\nakov\\text.txt", Encoding.GetEncoding("Windows-1251")))
+        using (var writer = new StreamWriter("D:\\nakov\\new.txt", false, Encoding.UTF8))
+        {
+            string line = reader.ReadLine();
+            while (line != null)
+            {
+                String result = Regex.Replace(line, @"<[^>]*>", String.Empty);
+                writer.WriteLine(result);
+                line = reader.ReadLine();
+            }
+        }
+    }
+}
